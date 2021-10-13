@@ -1,0 +1,93 @@
+<flectra>
+    <data>
+        <!-- -->
+        <record id="1" model="wines.szoloatvet">
+            <field name="name">2</field>
+            <field name="mazsajegy">0</field>
+            <field name="amount">81.7</field>
+            <field name="quality">2</field>
+            <field name="mustfok">16</field>
+<!--            <field name="vendor">Kiss Pál</field>-->
+            <field name="addon">Redox</field>
+            <field name="description">valami</field>
+        </record>
+        <record id="2" model="wines.szoloatvet">
+            <field name="name">4</field>
+            <field name="mazsajegy">0</field>
+            <field name="amount">101.8</field>
+            <field name="quality">3</field>
+            <field name="mustfok">16</field>
+<!--            <field name="vendor">Kiss Pál</field>-->
+            <field name="addon">Tan Fruit</field>
+            <field name="description">valami</field>
+        </record>
+        <record id="3" model="wines.szoloatvet">
+            <field name="name">11</field>
+            <field name="mazsajegy">0</field>
+            <field name="amount">41</field>
+            <field name="quality">5</field>
+            <field name="mustfok">16</field>
+<!--            <field name="vendor">Kiss Pál</field>-->
+            <field name="addon">Redox</field>
+            <field name="description">valami</field>
+        </record>
+    </data>
+
+    <record model="ir.actions.act_window" id="wines_list_action">
+        <field name="name">Szőlőátvételi munkalapok</field>
+        <field name="res_model">wines.szoloatvet</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">Hozza létre az első szőlőátvételi lapot.
+            </p>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="wines_szoloatvet_form_view">
+        <field name="name">szoloatvet.form</field>
+        <field name="model">wines.szoloatvet</field>
+        <field name="arch" type="xml">
+            <form string="Szőlőátvételi Munkalap">
+                <sheet>
+                    <group string="Azonosító adatok">
+                        <field name="name" widget="selection"/>
+                        <field name="amount"/>
+                        <field name="mazsajegy"/>
+                    </group>
+                    <group string="Technikai adatok">
+                        <field name="mustfok"/>
+                        <field name="quality" widget="selection"/>
+                        <field name="addon"/>
+                    </group>
+                    <group string="Rendelési adatok">
+                        <field name="vendor"/>
+                        <field name="create_date" widget="date" string="Rendelés dátuma"/>
+                    </group>
+                    <notebook>
+                        <page string="Megjegyzés">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- top level menu: no parent -->
+    <menuitem id="main_wines_menu" name="Wines"/>
+    <!-- A first level in the left side menu is needed
+         before using action= attribute -->
+    <menuitem id="wines_szoloatvetel_sub" name="Szőlőátvétel"
+              parent="main_wines_menu" action="wines_list_action"/>
+
+    <!--<menuitem id="szoloatvet_menu" name="Szőlőátvétel" parent="wines_menu"
+              action="wines_list_action"/>-->
+    <menuitem id="wines_szoloatvetel_sub_report" name="Szőlőátvétel Report" parent="main_wines_menu"
+            action=""/>
+    <!-- Full id location:
+         action="openacademy.course_list_action"
+         It is not required when it is the same module -->
+
+
+</flectra>
